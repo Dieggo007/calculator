@@ -32,7 +32,6 @@ numberPanel.append(...numberButtons);
 operatorPanel.append(...operatorButtons);
 
 panel.addEventListener('click', (e) => {
-    console.log(numbers);
     if (e.target.tagName !== 'BUTTON') return;
     const btnText = e.target.innerText;
     if (btnText === 'AC') {
@@ -60,8 +59,8 @@ panel.addEventListener('click', (e) => {
         return;
     }
     if (currentOperator && currentNumbers[1] !== null) {
-        screen.innerText = operate[btnText]();
-        currentNumbers[0] = ""+operate[btnText]();
+        screen.innerText = operate[currentOperator]();
+        currentNumbers[0] = ""+operate[currentOperator]();
         currentNumbers[1] = null;
         currentOperator = btnText;
         return;
