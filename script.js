@@ -25,14 +25,14 @@ const createButton = (text) => {
 }
 
 const numberButtons = [...numbers, '.', '0', '='].map(createButton);
-numbers.push['0'];
+numbers.push('0');
 const operatorButtons = operators.map(createButton);
 
 numberPanel.append(...numberButtons);
 operatorPanel.append(...operatorButtons);
 
 panel.addEventListener('click', (e) => {
-    console.log(e.target.tagName);
+    console.log(numbers);
     if (e.target.tagName !== 'BUTTON') return;
     const btnText = e.target.innerText;
     if (btnText === 'AC') {
@@ -42,7 +42,7 @@ panel.addEventListener('click', (e) => {
         screen.innerText = '0';
         return;
     }
-    if (btnText === '=' && currentNumbers[0] && currentNumbers[1] && currentOperator) {
+    if (btnText === '=' && currentNumbers[0] !== null && currentNumbers[1] !== null && currentOperator) {
         screen.innerText = operate[currentOperator]();
         currentNumbers[0] = operate[currentOperator]();
         currentNumbers[1] = null;
@@ -59,13 +59,13 @@ panel.addEventListener('click', (e) => {
         screen.innerText = currentNumbers[0];
         return;
     }
-    if (currentOperator && currentNumbers[1]) {
+    if (currentOperator && currentNumbers[1] !== null) {
         screen.innerText = operate[btnText]();
         currentNumbers[0] = ""+operate[btnText]();
         currentNumbers[1] = null;
         currentOperator = btnText;
         return;
     }
-    if (currentOperator || !currentNumbers[0]) return;
+    if (currentOperator || currentNumbers[0] === null) return;
     currentOperator = btnText;
 })
