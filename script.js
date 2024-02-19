@@ -51,11 +51,11 @@ panel.addEventListener('click', (e) => {
     }
     if (numbers.includes(btnText)) {
         if(currentOperator) {
-            currentNumbers[1] = currentNumbers[1] ? currentNumbers[1] + btnText : btnText;
+            currentNumbers[1] = currentNumbers[1] !== null ? currentNumbers[1] + btnText : btnText;
             screen.innerText = currentNumbers[1];
             return;
         }
-        currentNumbers[0] = currentNumbers[0] ? currentNumbers[0] + btnText : btnText;
+        currentNumbers[0] = currentNumbers[0] !== null ? currentNumbers[0] + btnText : btnText;
         screen.innerText = currentNumbers[0];
         return;
     }
